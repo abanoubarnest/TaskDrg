@@ -23,6 +23,8 @@
     "@angular/platform-browser-dynamic": "~11.1.2",
     "@angular/router": "~11.1.2",
     "angular-cli-ghpages": "^1.0.0-rc.1",
+    "apexcharts": "^3.26.3",
+    "ng-apexcharts": "^1.5.10",
     "rxjs": "~6.6.0",
     "save-dev": "0.0.1-security",
     "tslib": "^2.0.0",

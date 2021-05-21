@@ -9,6 +9,7 @@ import { DragDropComponent } from './drag-drop/drag-drop.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { SharedModule } from './shared/shared.module';
+import { NgApexchartsModule } from 'ng-apexcharts';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +23,8 @@ import { SharedModule } from './shared/shared.module';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    SharedModule
+    SharedModule,
+    NgApexchartsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

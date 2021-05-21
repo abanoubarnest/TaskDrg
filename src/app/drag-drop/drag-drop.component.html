@@ -1,18 +1,64 @@
 <div class="container">
-    <h1>{{title}}</h1>
-    <div class="list-container">
+  <div class="sidenav">
+    <div class="list" cdkDropList #todoList="cdkDropList" [cdkDropListData]="columns"
+      [cdkDropListConnectedTo]="['Dimension','Measure']" (cdkDropListDropped)="onDrop($event)">
 
-        <div class="todo-container column-container">
-            <div class="list" cdkDropList #todoList="cdkDropList" [cdkDropListData]="users" (cdkDropListDropped)="onDrop($event)">
-                <h2>Users</h2>
-                <mat-card *ngFor="let user of users" cdkDrag>
-                    <mat-card-header>
-                        <mat-card-title>{{user.first_name +' '+user.last_name}}</mat-card-title>
-                        <mat-card-subtitle>{{user.email}}</mat-card-subtitle>
-                    </mat-card-header>
-                    <img mat-card-image [src]="user.avatar" alt="Photo of a Shiba Inu">
-                </mat-card>
-            </div>
-        </div>
+      <h3>Columns</h3>
+      <hr />
+      <mat-card *ngFor="let col of columns" cdkDrag>
+        <mat-card-header>
+          <mat-card-title>{{col.name}}</mat-card-title>
+        </mat-card-header>
+
+      </mat-card>
     </div>
+  </div>
+  <div id="parent">
+    <div id="wide">Wide (rest of width)</div>
+    <div id="narrow">Narrow (200px)</div>
+  </div>
+  <div class=" main">
+    <h1>{{title}}</h1>
+    <div class="parent">
+      <div class="label1"> Dimension</div>
+      <div id="Dimension" cdkDropList #doneMovieList="cdkDropList" [cdkDropListData]="dimensionList"
+      [cdkDropListConnectedTo]="[todoList]" class="movie-list" (cdkDropListDropped)="onDrop($event)"
+      [cdkDropListEnterPredicate]="dimensionPredicate">
+      <div class="movie-block" *ngFor="let item of dimensionList" [cdkDragData]="item" cdkDrag>{{item.name}}</div>
+
+    </div>
+    <div class="btn">
+        <button class="btn" (click)="clearDimension()">Clear</button>
+    </div>
+    </div>
+
+
+
+    <div class="parent">
+        <div class="label1"> Measure</div>
+    <div id="Measure" cdkDropList #doneMovieList="cdkDropList" [cdkDropListData]="measureList"
+      [cdkDropListConnectedTo]="[todoList]" class="movie-list" (cdkDropListDropped)="onDrop($event)"
+      [cdkDropListEnterPredicate]="measurePredicate">
+      <div class="movie-block" *ngFor="let item of measureList" [cdkDragData]="item" cdkDrag 
+      >{{item.name}}</div>
+    </div> 
+    <div class="btn">
+        <button class="btn" (click)="clearMeasure()">Clear</button>
+    </div>
+  </div>
+  <div class="row" *ngIf="showChart">
+    <div id="chart">
+        <apx-chart
+          [series]="chartOptions.series"
+          [chart]="chartOptions.chart"
+          [xaxis]="chartOptions.xaxis"
+          [dataLabels]="chartOptions.dataLabels"
+          [grid]="chartOptions.grid"
+          [stroke]="chartOptions.stroke"
+          [title]="chartOptions.title"
+        ></apx-chart>
+      </div>
+</div>
+</div>
+
 </div>
